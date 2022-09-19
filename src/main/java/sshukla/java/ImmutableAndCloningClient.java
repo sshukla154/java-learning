@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author 'Seemant Shukla' on '16/09/2022'
  */
-public class ImmutableClient {
+public class ImmutableAndCloningClient {
 
     public static void main(String[] args) throws CloneNotSupportedException {
 
@@ -50,7 +50,6 @@ public class ImmutableClient {
         System.out.println(scEmployee.toString());
         scEmployeeNew.department.designation = "Fucked Up !!!";
         System.out.println(scEmployee.toString());
-
 
     }
 
