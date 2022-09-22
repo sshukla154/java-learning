@@ -1,4 +1,4 @@
-package sshukla.java.warmup;
+package sshukla.java.warmup.hackerrank;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

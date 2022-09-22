@@ -1,4 +1,4 @@
-package sshukla.java.warmup;
+package sshukla.java.warmup.hackerrank;
 
 /**
  * @author 'Seemant Shukla' on '21/09/2022'
