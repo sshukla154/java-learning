@@ -28,7 +28,9 @@ public class Java8FeatureWithString {
 
         coursesDistinctInReverseOrderSortingHavingCustomComparator(courses); // stream(), distinct(), sorted(Comparator.comparing(x -> x.length()))), forEach() -- Custom Comparator (e.g. comparing the length of string)
 
-        listOfLengthOfCoursesTitle(courses);
+        listOfLengthOfCoursesTitle(courses); //stream(), map(), collect(Collectors.toList())
+
+
 
     }
 

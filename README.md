@@ -22,6 +22,13 @@ Java 8 - 18 functionalities with examples
 10. Collectors class
 11. Concurrency Enhancements
 
+## Notes:
+1. Predicate FI: Function Descriptor (`boolean test(T t)`), can take only one input, Input type can be any but output will always be boolean.
+2. Function FI: Function Descriptor (`R apply(T t)`), can take one input of any type and also output type can be same or different
+3. Consumer FI: Function Descriptor (`void accept(T t)`), can take one input of any type but no output i.e. method is void
+4. Supplier FI: Function Descriptor (`T get()`), no input but can have any type of output.
+5. When Operator : All input and output will be of same type. Eg: `BinaryOperator`, `Unaryoperator`
+
 ## Miscellaneous example from
 
 - Accumulate names into a List
