@@ -54,6 +54,22 @@ public class Java8FeatureWithInteger {
 
         distinctSortedNumberFromList(numbers); //stream(), distinct(), sorted(), forEach()
 
+        squareOfNumberFromListToNewList(numbers); // stream(), map(), collect()
+
+        allEvenNumbersToNewList(numbers); // stream(), filter(), collect()
+
+    }
+
+    private static void allEvenNumbersToNewList(List<Integer> numbers) {
+        System.out.println("Java8FeatureWithInteger.allEvenNumbersToNewList()");
+        List<Integer> responseList = numbers.stream().filter(Java8FeatureWithInteger::isNumberEven).collect(Collectors.toList());
+        System.out.println(responseList);
+    }
+
+    private static void squareOfNumberFromListToNewList(List<Integer> numbers) {
+        System.out.println("Java8FeatureWithInteger.squareOfNumberFromListToNewList()");
+        List<Integer> responseList = numbers.stream().map(x -> x * x).collect(Collectors.toList());
+        System.out.println(responseList);
     }
 
     private static void distinctSortedNumberFromList(List<Integer> numbers) {
@@ -153,27 +169,19 @@ public class Java8FeatureWithInteger {
     }
 
     private static void printSquaresOfEachNumbers(List<Integer> numbers) {
-        System.out.println("Java8FeatureWithInteger.printAllSquaresOfEachNumbers()");
+        System.out.println("Java8FeatureWithInteger.printSquaresOfEachNumbers()");
         System.out.println(numbers.stream()
                 .map(Java8FeatureWithInteger::numberSquare)
                 .collect(Collectors.toList()));
     }
 
-    private static Integer numberSquare(Integer x) {
-        return x * x;
-    }
-
-    private static Integer numberCube(Integer x) {
-        return x * x * x;
-    }
-
     private static void printAllOddNumbers(List<Integer> numbers) {
-        System.out.println("Java8FeatureWithInteger.printAllOddNumbersUsingLambdaExpression()");
+        System.out.println("Java8FeatureWithInteger.printAllOddNumbers()");
         numbers.stream().filter(x -> x % 2 != 0).forEach(Java8FeatureWithInteger::printNumbers);
     }
 
     private static void printAllEvenNumbers(List<Integer> numbers) {
-        System.out.println("Java8FeatureWithInteger.printAllEvenNumbersUsingLambdaExpression()");
+        System.out.println("Java8FeatureWithInteger.printAllEvenNumbers()");
         numbers.stream().filter(Java8FeatureWithInteger::isNumberEven).forEach(Java8FeatureWithInteger::printNumbers);
     }
 
@@ -193,6 +201,14 @@ public class Java8FeatureWithInteger {
 
     private static Boolean isNumberEven(Integer x) {
         return x % 2 == 0;
+    }
+
+    private static Integer numberSquare(Integer x) {
+        return x * x;
+    }
+
+    private static Integer numberCube(Integer x) {
+        return x * x * x;
     }
 
 }
