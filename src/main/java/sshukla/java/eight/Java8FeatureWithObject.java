@@ -3,6 +3,7 @@ package sshukla.java.eight;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -65,9 +66,39 @@ public class Java8FeatureWithObject {
         sortedCoursesUsingComparator(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore).reversed());
 
         //sorted(), Comparator.comparingInt(), limit()
+        sortedTopFiveCourses(courseList, Comparator.comparing(Course::getNoOfStudents));
+
         //sorted(), Comparator.comparingInt(), skip()
+        skipTopThreeFromSortedCourses(courseList, Comparator.comparing(Course::getNoOfStudents));
         //sorted(), Comparator.comparingInt(), limit(), skip()
-        //sorted(), Comparator.comparingInt(), skip(), limit()
+        skipTopThreeFromTopFiveSortedCourses(courseList, Comparator.comparing(Course::getNoOfStudents));
+
+        //max()
+        topCourseOnComparingNoOfStudentsAndNoOfReviewsDESC(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore).reversed());
+    }
+
+    private static void topCourseOnComparingNoOfStudentsAndNoOfReviewsDESC(List<Course> courseList, Comparator<Course> courseComparator) {
+        System.out.println("Java8FeatureWithObject.topCourseOnComparingNoOfStudentsAndNoOfReviews()");
+        Optional<Course> response = courseList.stream().max(courseComparator);
+        System.out.println(response.get());
+    }
+
+    private static void skipTopThreeFromTopFiveSortedCourses(List<Course> courseList, Comparator<Course> courseComparator) {
+        System.out.println("Java8FeatureWithObject.skipTopThreeFromSortedCourses()");
+        List<Course> response = courseList.stream().sorted(courseComparator).limit(5).skip(3).collect(Collectors.toList());
+        System.out.println(response);
+    }
+
+    private static void skipTopThreeFromSortedCourses(List<Course> courseList, Comparator<Course> courseComparator) {
+        System.out.println("Java8FeatureWithObject.skipTopThreeFromSortedCourses()");
+        List<Course> response = courseList.stream().sorted(courseComparator).skip(3).collect(Collectors.toList());
+        System.out.println(response);
+    }
+
+    private static void sortedTopFiveCourses(List<Course> courseList, Comparator<Course> courseComparator) {
+        System.out.println("Java8FeatureWithObject.sortedTopFiveCourses()");
+        List<Course> response = courseList.stream().sorted(courseComparator).limit(5).collect(Collectors.toList());
+        System.out.println(response);
     }
 
     private static void sortedCoursesUsingComparator(List<Course> courseList, Comparator<Course> courseComparator) {

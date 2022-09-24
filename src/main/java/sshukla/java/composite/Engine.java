@@ -1,4 +1,4 @@
-package sshukla.java.composite.example;
+package sshukla.java.composite;
 
 public class Engine {
     private String engineType;
