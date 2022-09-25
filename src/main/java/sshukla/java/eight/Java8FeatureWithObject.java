@@ -3,7 +3,6 @@ package sshukla.java.eight;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -74,13 +73,95 @@ public class Java8FeatureWithObject {
         skipTopThreeFromTopFiveSortedCourses(courseList, Comparator.comparing(Course::getNoOfStudents));
 
         //max()
-        topCourseOnComparingNoOfStudentsAndNoOfReviewsDESC(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore).reversed());
+        maxCourseOnComparingNoOfStudentsAndNoOfReviews(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore));
+
+        //min()
+        minCourseOnComparingNoOfStudentsAndNoOfReviews(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore));
+
+        //max()
+        maxCourseOnComparingNoOfStudentsAndNoOfReviews(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore).reversed());
+
+        //min()
+        minCourseOnComparingNoOfStudentsAndNoOfReviews(courseList, Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore).reversed());
+
+        //filter(), findAny()
+        findAnyFromSortedCoursesUsingFilter(courseList, x -> x.getReviewScore() > 90);
+
+        //filter(), findAny()
+        findAnyFromSortedCoursesUsingFilter(courseList, x -> x.getReviewScore() > 100);
+
+        //filter(), findFirst()
+        findFirstFromSortedCoursesUsingFilter(courseList, x -> x.getReviewScore() > 92);
+
+        // Find total no of students, which has review greater than 95
+        findTotalNoOfStudentOfReviewGreaterThan95(courseList, x -> x.getReviewScore() > 95);
+
+        // Find total no of students, which has review greater than 95
+        findAverageNoOfStudentOfReviewGreaterThan95(courseList, x -> x.getReviewScore() > 95);
+
+        // Find count of such courses, which has review greater than 95
+        findCountOfNoOfStudentOfReviewGreaterThan95(courseList, x -> x.getReviewScore() > 95);
+
+        findMaxOfNoOfStudentOfReviewGreaterThan95(courseList, x -> x.getReviewScore() > 95);
+
+        findMinOfNoOfStudentOfReviewGreaterThan95(courseList, x -> x.getReviewScore() > 95);
+
     }
 
-    private static void topCourseOnComparingNoOfStudentsAndNoOfReviewsDESC(List<Course> courseList, Comparator<Course> courseComparator) {
+    private static void findMinOfNoOfStudentOfReviewGreaterThan95(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findMinOfNoOfStudentOfReviewGreaterThan95()");
+        int totalNoOfStudents = courseList.stream().filter(coursePredicate).mapToInt(Course::getNoOfStudents).min().orElse(0);
+        System.out.println(totalNoOfStudents);
+    }
+
+    private static void findMaxOfNoOfStudentOfReviewGreaterThan95(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findMaxOfNoOfStudentOfReviewGreaterThan95()");
+        int totalNoOfStudents = courseList.stream().filter(coursePredicate).mapToInt(Course::getNoOfStudents).max().orElse(0);
+        System.out.println(totalNoOfStudents);
+    }
+
+    private static void findCountOfNoOfStudentOfReviewGreaterThan95(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findCountOfNoOfStudentOfReviewGreaterThan95()");
+        long totalNoOfStudents = courseList.stream().filter(coursePredicate).mapToInt(Course::getNoOfStudents).count();
+        System.out.println(totalNoOfStudents);
+    }
+
+    private static void findAverageNoOfStudentOfReviewGreaterThan95(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findAverageNoOfStudentOfReviewGreaterThan95()");
+        double totalNoOfStudents = courseList.stream().filter(coursePredicate).mapToInt(Course::getNoOfStudents).average().orElse(0);
+        System.out.println(totalNoOfStudents);
+    }
+
+    private static void findTotalNoOfStudentOfReviewGreaterThan95(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findTotalNoOfStudentOfReviewGreaterThan95()");
+        Integer totalNoOfStudents = courseList.stream().filter(coursePredicate).map(Course::getNoOfStudents).reduce(0, Integer::sum);
+        System.out.println(totalNoOfStudents);
+        totalNoOfStudents = courseList.stream().filter(coursePredicate).mapToInt(Course::getNoOfStudents).sum();
+        System.out.println(totalNoOfStudents);
+    }
+
+    private static void findFirstFromSortedCoursesUsingFilter(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findAnyFromSortedCoursesUsingFilter()");
+        Course response = courseList.stream().filter(coursePredicate).findFirst().orElse(new Course("Backup Course", "IT", 100, 100));
+        System.out.println(response);
+    }
+
+    private static void findAnyFromSortedCoursesUsingFilter(List<Course> courseList, Predicate<Course> coursePredicate) {
+        System.out.println("Java8FeatureWithObject.findAnyFromSortedCoursesUsingFilter()");
+        Course response = courseList.stream().filter(coursePredicate).findAny().orElse(new Course("Backup Course", "IT", 100, 100));
+        System.out.println(response);
+    }
+
+    private static void minCourseOnComparingNoOfStudentsAndNoOfReviews(List<Course> courseList, Comparator<Course> courseComparator) {
         System.out.println("Java8FeatureWithObject.topCourseOnComparingNoOfStudentsAndNoOfReviews()");
-        Optional<Course> response = courseList.stream().max(courseComparator);
-        System.out.println(response.get());
+        Course response = courseList.stream().min(courseComparator).orElse(new Course("Backup Course", "IT", 100, 100));
+        System.out.println(response);
+    }
+
+    private static void maxCourseOnComparingNoOfStudentsAndNoOfReviews(List<Course> courseList, Comparator<Course> courseComparator) {
+        System.out.println("Java8FeatureWithObject.topCourseOnComparingNoOfStudentsAndNoOfReviews()");
+        Course response = courseList.stream().max(courseComparator).orElse(new Course("Backup Course", "IT", 100, 100));
+        System.out.println(response);
     }
 
     private static void skipTopThreeFromTopFiveSortedCourses(List<Course> courseList, Comparator<Course> courseComparator) {

@@ -1,9 +1,11 @@
-package sshukla.java;
+package sshukla.java.eight;
 
 import sshukla.java.model.Employee;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasicsBrushUp {
 
@@ -25,6 +27,8 @@ public class BasicsBrushUp {
 //                .map(Employee::getDepartment)
 //                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
 
+        System.out.println(employeeList.stream().sorted(Comparator.comparing(Employee::getSalary))
+                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary)))));
 
     }
 }
