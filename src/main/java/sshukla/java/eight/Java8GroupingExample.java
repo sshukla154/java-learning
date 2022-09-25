@@ -27,6 +27,30 @@ public class Java8GroupingExample {
 
         groupCoursesByCategoryAndMaxOfReview(courseList);
 
+        groupCoursesByCategoryAndCount(courseList);
+
+        groupCoursesByCategoryAndMaxOfReviewed(courseList);
+
+        groupCourseNameByCategory(courseList);
+
+    }
+
+    private static void groupCourseNameByCategory(List<Course> courseList) {
+        System.out.println("Java8GroupingExample.groupCourseNameByCategory()");
+        Map<String, List<String>> response = courseList.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.mapping(Course::getName, Collectors.toList())));
+        System.out.println(response);
+    }
+
+    private static void groupCoursesByCategoryAndMaxOfReviewed(List<Course> courseList) {
+        System.out.println("Java8GroupingExample.groupCoursesByCategoryAndMaxOfReviewed()");
+        Map<String, Optional<Course>> response = courseList.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.maxBy(Comparator.comparingInt(Course::getReviewScore))));
+        System.out.println(response);
+    }
+
+    private static void groupCoursesByCategoryAndCount(List<Course> courseList) {
+        System.out.println("Java8GroupingExample.groupCoursesByCategoryAndCount()");
+        Map<String, Long> response = courseList.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.counting()));
+        System.out.println(response);
     }
 
     private static void groupCoursesByCategoryAndMaxOfReview(List<Course> courseList) {
