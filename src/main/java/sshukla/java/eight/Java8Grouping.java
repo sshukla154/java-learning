@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * @author 'Seemant Shukla' on '24/09/2022'
  */
-public class Java8GroupingExample {
+public class Java8Grouping {
 
     public static void main(String[] args) {
         List<Course> courseList = Arrays.asList(

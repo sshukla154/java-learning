@@ -30,8 +30,18 @@ public class Java8FeatureWithString {
 
         listOfLengthOfCoursesTitle(courses); //stream(), map(), collect(Collectors.toList())
 
+        getStringFromList(courses);//collect(Collectors.joining(", "));
 
+    }
 
+    private static void getStringFromList(List<String> courses) {
+        System.out.println("Java8StringJoiner.getStringFromList()");
+        StringJoiner stringJoiner = new StringJoiner(", ");
+        String response = courses.stream().map(stringJoiner::add).toString();
+        System.out.println("Incorrect Approach : " + response);
+
+        response = courses.stream().collect(Collectors.joining(", "));
+        System.out.println("Correct Approach : " + response);
     }
 
     private static void listOfLengthOfCoursesTitle(List<String> courses) {
