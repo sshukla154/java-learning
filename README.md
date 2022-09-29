@@ -29,6 +29,13 @@ Java 8 - 18 functionalities with examples
 4. Supplier FI: Function Descriptor (`T get()`), no input but can have any type of output.
 5. When Operator : All input and output will be of same type. Eg: `BinaryOperator`, `Unaryoperator`
 
+## SOLID Principles
+1. Single Responsibilities Principle
+2. Open-Closed Principle
+3. Liskov Substitution Principle
+4. Interface Segregation Principle
+5. Dependency Inversion Principle
+
 ## Miscellaneous example from
 
 - Accumulate names into a List

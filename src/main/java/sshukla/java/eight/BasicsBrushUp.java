@@ -17,6 +17,8 @@ public class BasicsBrushUp {
          * EC=Optional[Employee{name='Hari', department='EC', employeeID='102', salary=30000}]
          * */
 
+//        employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+
         employeeList.add(new Employee("Mayur", "IT", "100", 1000));
         employeeList.add(new Employee("Raj", "IT", "101", 2000));
         employeeList.add(new Employee("Anshul", "IT", "102", 3000));
@@ -27,8 +29,10 @@ public class BasicsBrushUp {
 //                .map(Employee::getDepartment)
 //                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
 
-        System.out.println(employeeList.stream().sorted(Comparator.comparing(Employee::getSalary))
-                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary)))));
+        System.out.println(employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary)))));
+
+//        System.out.println(employeeList.stream().sorted(Comparator.comparing(Employee::getSalary))
+//                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary)))));
 
     }
 }
