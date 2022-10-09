@@ -42,7 +42,7 @@ public class Java8FeatureWithObject {
 
         coursesUsingAnyMatch(courseList, x -> x.getReviewScore() > 95);//stream(), noneMatch()
 
-        //sorted()
+        //sorted()HHT
         Comparator<Course> CourseByASCNoOfStudentsComparator = Comparator.comparing(Course::getNoOfStudents);
         sortedCoursesUsingComparator(courseList, CourseByASCNoOfStudentsComparator);
 
