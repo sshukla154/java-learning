@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class FailFirstAndFailSafeIterator {
 
     /**
-     * Iterator provides transverse of collection of objects along with concurrent modification by adding, removing, updating the elements in that object.
+     * Iterator provides transverse of collection of objects along with concurrent modification by adding, removing, updating the elements in that object. Internally Iterator uses a concept called ModCount, so any changes in ModCount Iterator throws ConcurrentModificationException.
      * <p>
      * FailFirst : While iterating when we perform modification of that same object we encounter `ConcurrentModificationException`. Some examples of Fail Fast iterator are iterator on ArrayList, HashMap collection classes.
      * FailSafe : While iterating when we perform modification of that same object if we don't encounter any `ConcurrentModificationException`, this is FailSafe Iterator as the modification is performed on copy of object installed of original object
@@ -23,7 +23,6 @@ public class FailFirstAndFailSafeIterator {
 
         failFirstExample();
 
-
     }
 
     private static void failFirstExample() {
@@ -34,7 +33,7 @@ public class FailFirstAndFailSafeIterator {
         integerList.add(3);
         Iterator<Integer> iterator = integerList.iterator();
         while (iterator.hasNext()) {
-            Integer i1 = iterator.next();
+            Integer i1 = iterator.next(); // At this point which throws error
             if (i1 == 3)
                 integerList.add(4);
         }
