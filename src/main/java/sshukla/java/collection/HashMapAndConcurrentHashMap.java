@@ -1,5 +1,6 @@
 package sshukla.java.collection;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,7 +15,7 @@ public class HashMapAndConcurrentHashMap extends Thread {
      * <p>
      * No error when we use ConcurrentHashMap() - It has segment locking or bucket locking
      **/
-//    static Map<Integer, String> hashMap = new HashMap<>();
+    static Map<Integer, String> hashMap = new HashMap<>();
     static Map<Integer, String> map = new ConcurrentHashMap<>();
 
     public void run() {
@@ -38,6 +39,8 @@ public class HashMapAndConcurrentHashMap extends Thread {
             Thread.sleep(10000);
         }
         System.out.println(map);
+
+        hashMap.put(1, "A");
 
     }
 
