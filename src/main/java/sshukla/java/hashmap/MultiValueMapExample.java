@@ -1,0 +1,23 @@
+package sshukla.java.hashmap;
+
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+/**
+ * @author 'Seemant Shukla' on '13/10/2022'
+ */
+public class MultiValueMapExample {
+
+    public static void main(String[] args) {
+        MultiValueMap<String, String> linkedMultiValueMap = new LinkedMultiValueMap<>();
+        linkedMultiValueMap.add("User", "Seemant, Golu");
+        linkedMultiValueMap.add("Message", "Hello World!!!");
+
+        System.out.println(linkedMultiValueMap);
+
+//        MultiValueMap<String, String> multiValueMapAdapter = new MultiValueMapAdapter<>(linkedMultiValueMap);
+//        System.out.println(multiValueMapAdapter);
+
+    }
+
+}
