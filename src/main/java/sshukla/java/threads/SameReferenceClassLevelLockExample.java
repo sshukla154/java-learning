@@ -7,15 +7,15 @@ import java.util.stream.IntStream;
  */
 
 //https://www.youtube.com/watch?v=bWLoPwf1bsM
-public class SameReferenceObjectLevelLockExample {
+public class SameReferenceClassLevelLockExample {
 
-    public synchronized void m1() {
+    public static synchronized void m1() {
         for (Integer i : IntStream.range(0, 5).toArray())
             System.out.println(i + " - SameReferenceObjectLevelLockExample.m1() - " + Thread.currentThread().getName());
 
     }
 
-    public synchronized void m2() {
+    public static synchronized void m2() {
         for (Integer i : IntStream.range(0, 5).toArray())
             System.out.println(i + " - SameReferenceObjectLevelLockExample.m2() - " + Thread.currentThread().getName());
 
@@ -23,21 +23,20 @@ public class SameReferenceObjectLevelLockExample {
 
     public static void main(String[] args) {
 
-        SameReferenceObjectLevelLockExample sameReferenceObjectLevelLockExample = new SameReferenceObjectLevelLockExample();
-        Thread1 thread1 = new Thread1(sameReferenceObjectLevelLockExample);
-        Thread2 thread2 = new Thread2(sameReferenceObjectLevelLockExample);
-        thread1.start();
-        thread2.start();
-
+        SameReferenceClassLevelLockExample sameReferenceObjectLevelLockExample = new SameReferenceClassLevelLockExample();
+        Thread11 thread11 = new Thread11(sameReferenceObjectLevelLockExample);
+        Thread22 thread22 = new Thread22(sameReferenceObjectLevelLockExample);
+        thread11.start();
+        thread22.start();
     }
 
 }
 
-class Thread1 extends Thread {
+class Thread11 extends Thread {
 
-    private SameReferenceObjectLevelLockExample object = null;
+    private SameReferenceClassLevelLockExample object = null;
 
-    public Thread1(SameReferenceObjectLevelLockExample sameReferenceObjectLevelLockExample) {
+    public Thread11(SameReferenceClassLevelLockExample sameReferenceObjectLevelLockExample) {
         this.object = sameReferenceObjectLevelLockExample;
     }
 
@@ -48,11 +47,11 @@ class Thread1 extends Thread {
     }
 }
 
-class Thread2 extends Thread {
+class Thread22 extends Thread {
 
-    private SameReferenceObjectLevelLockExample object = null;
+    private SameReferenceClassLevelLockExample object = null;
 
-    public Thread2(SameReferenceObjectLevelLockExample sameReferenceObjectLevelLockExample) {
+    public Thread22(SameReferenceClassLevelLockExample sameReferenceObjectLevelLockExample) {
         this.object = sameReferenceObjectLevelLockExample;
     }
 
@@ -63,3 +62,4 @@ class Thread2 extends Thread {
     }
 
 }
+
