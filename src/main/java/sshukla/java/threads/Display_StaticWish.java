@@ -5,10 +5,10 @@ import java.util.stream.IntStream;
 /**
  * @author 'Seemant Shukla' on '17/10/2022'
  */
-public class Display {
+public class Display_StaticWish {
 
     //public void wish(String input) {
-    public synchronized void wish(String input) {
+    public static synchronized void wish(String input) {
         for (Integer i : IntStream.range(1, 10).toArray()) {
             System.out.println(i + " - Good Morning: " + input);
         }
