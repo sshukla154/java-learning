@@ -1,4 +1,4 @@
-# java-learning
+~~# java-learning
 
 Java 8 - 18 functionalities with examples
 
@@ -15,7 +15,8 @@ Java 8 - 18 functionalities with examples
    , `reduce()`, `noneMatch()`, `max()`, `min()`, `noneMatch()`
    , `flatMapToDouble()`, `flatMapToInt()`, `flatMapToLong()`, `forEach()`, `forEachOrdered()`, `findAny()`
    , `findFirst()`, `allMatch()`, `anyMatch()`, `count()`, `collect()`
-6. Function Descriptor : Functional descriptor of an Interface is the method type of the single abstract method of the interface.
+6. Function Descriptor : Functional descriptor of an Interface is the method type of the single abstract method of the
+   interface.
 7. Java DateTime API
 8. CompletableFuture
 9. Optional class
@@ -23,13 +24,18 @@ Java 8 - 18 functionalities with examples
 11. Concurrency Enhancements
 
 ## Notes:
-1. Predicate FI: Function Descriptor (`boolean test(T t)`), can take only one input, Input type can be any but output will always be boolean.
-2. Function FI: Function Descriptor (`R apply(T t)`), can take one input of any type and also output type can be same or different
-3. Consumer FI: Function Descriptor (`void accept(T t)`), can take one input of any type but no output i.e. method is void
+
+1. Predicate FI: Function Descriptor (`boolean test(T t)`), can take only one input, Input type can be any but output
+   will always be boolean.
+2. Function FI: Function Descriptor (`R apply(T t)`), can take one input of any type and also output type can be same or
+   different
+3. Consumer FI: Function Descriptor (`void accept(T t)`), can take one input of any type but no output i.e. method is
+   void
 4. Supplier FI: Function Descriptor (`T get()`), no input but can have any type of output.
 5. When Operator : All input and output will be of same type. Eg: `BinaryOperator`, `Unaryoperator`
 
 ## SOLID Principles
+
 1. Single Responsibilities Principle
 2. Open-Closed Principle
 3. Liskov Substitution Principle
@@ -90,3 +96,13 @@ Map<Department, Integer> totalByDept = employees.stream()
 Map<Boolean, List<Student>> passingFailing = students.stream()
                                                      .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
 ```
+
+## Threads:
+
+- `ObjectLevelLock` - When a Thread is executing synchronized method no other threads are allowed to execute any
+  synchronized method but other threads can execute non-synchronized methods. ObjectLevelLock works on the same object
+  i.e. only one object, in case we have different object we can't expect the exact output.
+
+- `ClassLevelLock` - When a Thread is executing static synchronized method no other threads are allowed to execute any
+  static synchronized method but other threads can execute non-synchronized methods (static or instance) and
+  synchronized instance method.
