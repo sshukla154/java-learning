@@ -1,4 +1,4 @@
-package sshukla.java.hashmap;
+package sshukla.java.map;
 
 import java.util.*;
 

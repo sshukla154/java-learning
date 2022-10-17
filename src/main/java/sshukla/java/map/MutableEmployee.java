@@ -1,27 +1,24 @@
-package sshukla.java.hashmap;
+package sshukla.java.map;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author 'Seemant Shukla' on '30/09/2022'
  */
-public final class ImmutableEmployee implements Cloneable {
-    private final int employeeId;
-    private final String employeeName;
-    private final Integer age;
-    private final String gender;
+public class MutableEmployee implements Cloneable {
+    private int employeeId;
+    private String employeeName;
+    private Integer age;
+    private String gender;
 
-    private final List<String> citiesWorkedIn;
+    private List<String> citiesWorkedIn;
 
-
-    //Perform Deep-Cloning
-    public ImmutableEmployee(int employeeId, String employeeName, Integer age, String gender, List<String> citiesWorkedIn) {
+    public MutableEmployee(int employeeId, String employeeName, Integer age, String gender, List<String> citiesWorkedIn) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.age = age;
         this.gender = gender;
-        this.citiesWorkedIn = citiesWorkedIn.stream().collect(Collectors.toList());
+        this.citiesWorkedIn = citiesWorkedIn;
     }
 
     public int getEmployeeId() {
@@ -40,9 +37,8 @@ public final class ImmutableEmployee implements Cloneable {
         return gender;
     }
 
-    //Perform Deep-Cloning
     public List<String> getCitiesWorkedIn() {
-        return citiesWorkedIn.stream().collect(Collectors.toList());
+        return citiesWorkedIn;
     }
 
     @Override

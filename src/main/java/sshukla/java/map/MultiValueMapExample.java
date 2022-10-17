@@ -1,7 +1,8 @@
-package sshukla.java.hashmap;
+package sshukla.java.map;
 
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.MultiValueMapAdapter;
 
 /**
  * @author 'Seemant Shukla' on '13/10/2022'
@@ -15,8 +16,8 @@ public class MultiValueMapExample {
 
         System.out.println(linkedMultiValueMap);
 
-//        MultiValueMap<String, String> multiValueMapAdapter = new MultiValueMapAdapter<>(linkedMultiValueMap);
-//        System.out.println(multiValueMapAdapter);
+        MultiValueMap<String, String> multiValueMapAdapter = new MultiValueMapAdapter<>(linkedMultiValueMap);
+        System.out.println(multiValueMapAdapter);
 
     }
 
