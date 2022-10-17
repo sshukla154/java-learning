@@ -16,7 +16,7 @@ public class EnsureThreadExecutionFlow extends Thread {
     @Override
     public void run() {
         for (Integer i : IntStream.range(1, 10).toArray())
-            System.out.println(Thread.currentThread().getName() + " - I am in DaemonThreadExample.run() - " + LocalDateTime.now());
+            System.out.println(i + " : " + Thread.currentThread().getName() + " - I am in DaemonThreadExample.run() - " + LocalDateTime.now());
     }
 
     public static void main(String[] args) throws InterruptedException {
