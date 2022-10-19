@@ -104,3 +104,8 @@
     - Implement Thread with Callable interface and over-ride call() which is similar to Runnable
       interface and run() but in Callable.call() method we can have return type.
     - Call submit() instead of execute() from ExecutorService
+
+- Method to help with cancellation:
+  1. `future.cancel(false)` - Cancel the task 
+  2. `future.isCancelled()` - Return true if the task was cancelled
+  3. `future.isDone()` - Return true if the task was cancelled (successfully or otherwise)

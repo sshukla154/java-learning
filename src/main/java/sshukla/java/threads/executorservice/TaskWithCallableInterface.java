@@ -13,6 +13,6 @@ public class TaskWithCallableInterface implements Callable<Integer> {
         for (Integer i : IntStream.range(1, 11).toArray()) {
             System.out.println(i + " : TaskWithCallableInterface.run() - " + Thread.currentThread().getName());
         }
-        return new Random().nextInt();
+        return new Random().nextInt(100);
     }
 }
