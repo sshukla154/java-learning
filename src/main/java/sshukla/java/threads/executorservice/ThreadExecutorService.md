@@ -1,14 +1,14 @@
-# Notes:
+~~# Notes:
 
 - 1 Java Thread = 1 OS Thread
 - As all the threads in TP works concurrently (i.e. at the same time), we should have queue which handle concurrent
   operation. Hence, ExecutorService TP uses Blocking queue for saving/storing threads.
 - What is the IDEAL pool size ?
 
-|  `Task Type`  | `Ideal Pool Size` |                                                                  `Consideration`                                                                   |
-|:-------------:|:-----------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
-| CPU Intensive | CPU core count `int availableProcessors = Runtime.getRuntime().availableProcessors();` |                                  How many other applications (or other executors/threads) are running on same CPU                                  |
-| IO Intensive  |       High        | Exact number will depend on rate of task submissions and average task wait time.<br/> NOTE: Too many threads will increase memory consumption too. |
+| `Task Type`   | `Ideal Pool Size`                                                                      | `Consideration`                                                                                                                                    |
+|:--------------|:---------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------|
+| CPU Intensive | CPU core count `int availableProcessors = Runtime.getRuntime().availableProcessors();` | How many other applications (or other executors/threads) are running on same CPU                                                                   |
+| IO Intensive  | High                                                                                   | Exact number will depend on rate of task submissions and average task wait time.<br/> NOTE: Too many threads will increase memory consumption too. |
 
 - Types of Thread Pools:
     1. `FixedThreadPool`
@@ -47,3 +47,55 @@
         - Fetch new Task from blocking queue
         - Execute it
     - Life Cycle: Recreates thread if killed because of the task.
+
+- All the ThreadPool Method internally calls ThreadPoolExecutor class parameterized constructor
+  `public ThreadPoolExecutor(int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  TimeUnit unit,
+  BlockingQueue<Runnable> workQueue,
+  ThreadFactory threadFactory,
+  RejectedExecutionHandler handler){}`
+
+| `Parameter`          | `Type`                   | `Meaning`                                                    |
+|:---------------------|:-------------------------|:-------------------------------------------------------------|
+| corePoolSize         | int                      | Minimum or base size of the pool                             |
+| maximumPoolSize      | int                      | Maximum size of the pool                                     |
+| keepAliveTime + unit | long                     | Time to keep an idle thread alive (after which it is killed) |
+| workQueue            | BlockingQueue            | Queue to store the task from which threads fetch them        |
+| threadFactory        | ThreadFactory            | The factory to use to create new threads                     |
+| handler              | RejectedExecutionHandler | Callback to use when tasks submitted are rejected            |
+
+| `Parameter`          | `FixedThreadPool`                                  | `CachedThreadPool`                                           | `ScheduledThreadPool` | `SingleThreadedExecutor`                                     |
+|:---------------------|:---------------------------------------------------|:-------------------------------------------------------------|:----------------------|:-------------------------------------------------------------|
+| corePoolSize         | constructor-arg                                    | 0                                                            | constructor-arg       | 1                                                            |
+| maximumPoolSize      | same as corePoolSize                               | Integer.MAX_VALUE                                            | Integer.MAX_VALUE     | 1                                                            |
+| keepAliveTime + unit | 0 seconds (Not applicable - No killing of threads) | Time to keep an idle thread alive (after which it is killed) | 60 seconds            | 0 seconds  (Not applicable - No killing or creation threads) |
+
+- Types of Queues:
+
+| `Pool`                   | ` Queue Type`       | `Why?`                                                                                                                                    |
+|:-------------------------|:--------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| `FixedThreadPool`        | LinkedBlockingQueue | Threads are limited, thus unbounded queue to store all tasks.<br/> Note: Since queue can never become full, new threads are never created |
+| `SingleThreadedExecutor` | LinkedBlockingQueue | Threads are limited, thus unbounded queue to store all tasks.<br/> Note: Since queue can never become full, new threads are never created |
+| `CachedThreadPool`       | SynchronousQueue    | Threads are unbounded so no need to store the tasks. Synchronous queue is queue with single slot.                                         |
+| `ScheduledThreadPool`    | DelayedWorkQueue    | Special queue that deals with schedule/time-delays                                                                                        |
+|                          |                     |                                                                                                                                           |
+| `Custom`                 | ArrayBlockingQueue  | Bounded queue store the tasks. If queue gets full, new thread is created (as long as count is less than maximumPoolSize)                  |
+
+- Types of Policy:
+
+| `Policy`              | `What it means?`                                                                                                                                                                               |
+|:----------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `AbortPolicy`         | Submitting new tasks throws RejectedExecutionException (Runtime exception)                                                                                                                     |
+| `DiscardPolicy`       | Submitting new task silently discards it                                                                                                                                                       |
+| `DiscardOldestPolicy` | Submitting new task drops existing oldest task, and new task is added to the queue.                                                                                                            |
+| `CallerRunsPolicy`    | Submitting new tasks will execute the task on the caller thread itself. This can create feedback loop where caller thread is busy executing the task and cannot submit new tasks at fast pace. |
+
+- Life Cycle Methods:
+
+1. `shutdown()` - Initiate shutdown
+2. `isShutdown()` - Will return true is the shutdown has begun
+3. `isTerminated()` - Will return true if all the tasks are completed including queued one
+4. `awaitTermination()` - Blocks until all tasks are completed or if timeout occurs
+5. `shutdownNow()` - Will initial shutdown and return all queued tasks
