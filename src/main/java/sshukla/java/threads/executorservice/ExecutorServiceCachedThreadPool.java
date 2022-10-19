@@ -15,5 +15,6 @@ public class ExecutorServiceCachedThreadPool {
         for (Integer i : IntStream.range(1, 101).toArray())
             executorService.execute(new Task());
         System.out.println("ExecutorServiceCachedThreadPool.main() - " + Thread.currentThread().getName());
+        executorService.shutdown();
     }
 }

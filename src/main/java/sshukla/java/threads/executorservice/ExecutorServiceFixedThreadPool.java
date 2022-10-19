@@ -17,6 +17,7 @@ public class ExecutorServiceFixedThreadPool {
         for (Integer i : IntStream.range(1, 101).toArray())
             executorService.execute(new Task());
         System.out.println("ExecutorServiceFixedThreadPool.main() - " + Thread.currentThread().getName());
+        executorService.shutdown();
     }
 
 }

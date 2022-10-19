@@ -17,6 +17,8 @@ public class MultiThreadWithCallableTask {
             executorService.submit(new TaskWithCallableInterface());
         }
         System.out.println("MultiThreadWithCallableTask.main() - " + Thread.currentThread().getName());
+
+        executorService.shutdown();
     }
 
 }

@@ -16,6 +16,7 @@ public class ExecutorServiceSingleThreadedExecutor {
         for (Integer i : IntStream.range(1, 101).toArray())
             executorService.execute(new Task());
         System.out.println("ExecutorServiceSingleThreadedExecutor.main() - " + Thread.currentThread().getName());
+        executorService.shutdown();
     }
 
 }

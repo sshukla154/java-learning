@@ -25,5 +25,6 @@ public class ExecutorServiceScheduleThreadPool {
         for (Integer i : IntStream.range(1, 101).toArray())
             scheduledExecutorService.execute(new Task());
         System.out.println("ExecutorServiceScheduleThreadPool.main() - " + Thread.currentThread().getName());
+        scheduledExecutorService.shutdown();
     }
 }

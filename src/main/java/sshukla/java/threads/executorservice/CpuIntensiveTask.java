@@ -10,6 +10,5 @@ public class CpuIntensiveTask implements Runnable {
     public void run() {
         for (Integer i : IntStream.range(1, 11).toArray())
             System.out.println(i + " : CpuIntensiveTask.run() - " + Thread.currentThread().getName());
-
     }
 }

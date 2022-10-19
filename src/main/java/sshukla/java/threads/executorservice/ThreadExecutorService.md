@@ -99,3 +99,8 @@
 3. `isTerminated()` - Will return true if all the tasks are completed including queued one
 4. `awaitTermination()` - Blocks until all tasks are completed or if timeout occurs
 5. `shutdownNow()` - Will initial shutdown and return all queued tasks
+
+- To implement callable :
+    - Implement Thread with Callable interface and over-ride call() which is similar to Runnable
+      interface and run() but in Callable.call() method we can have return type.
+    - Call submit() instead of execute() from ExecutorService

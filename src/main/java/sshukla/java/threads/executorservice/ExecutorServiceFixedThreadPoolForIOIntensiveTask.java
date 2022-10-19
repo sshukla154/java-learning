@@ -17,6 +17,7 @@ public class ExecutorServiceFixedThreadPoolForIOIntensiveTask {
         for (Integer i : IntStream.range(1, 10001).toArray())
             executorService.execute(new IOIntensiveTask());
         System.out.println("ExecutorServiceFixedThreadPoolForIOIntensiveTask.main() - " + Thread.currentThread().getName());
+        executorService.shutdown();
     }
 
 }
