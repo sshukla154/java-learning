@@ -1,4 +1,4 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture.example1;
 
 import lombok.*;
 

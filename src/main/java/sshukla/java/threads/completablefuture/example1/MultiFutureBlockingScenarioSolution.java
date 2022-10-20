@@ -1,13 +1,16 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture.example1;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import sshukla.java.threads.completablefuture.example1.Order;
+
+import java.util.concurrent.*;
 import java.util.stream.IntStream;
 
 /**
  * @author 'Seemant Shukla' on '19/10/2022'
+ * <p>
+ * Each Order has 5 task: Fetch Order, Enrich Order, Payment, Dispatch, Send Email
+ * <p>
+ * Each Order has 5 task: Fetch Order, Enrich Order, Payment, Dispatch, Send Email
  * <p>
  * Each Order has 5 task: Fetch Order, Enrich Order, Payment, Dispatch, Send Email
  * <p>
@@ -45,56 +48,49 @@ import java.util.stream.IntStream;
  **/
 
 //https://www.youtube.com/watch?v=ImtZgX1nmr8
-public class MultiFutureBlockingScenarioProblem {
+public class MultiFutureBlockingScenarioSolution {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         //Create a Thread Pool with 10 threads
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-        //Consider each integer i.e. from 1 to 10 is corresponding to one order
+        //Consider each integer i.e from 1 to 10 is corresponding to one order
         for (Integer i : IntStream.range(1, 11).toArray()) {
-            // Submit the tasks for execution and accept the placeholder object for return value
-            Future<Order> future = executorService.submit(getOrderTask());
-            Order order = future.get();// Blocking
 
-            Future<Order> future1 = executorService.submit(enrichTask(order));
-            order = future1.get();// Blocking
+            CompletableFuture.supplyAsync(() -> getOrderTask())
+                    .thenApply(newOrder -> enrichTask(newOrder))
+                    .thenApply(order -> performPaymentTask(order))
+                    .thenApply(order -> dispatchTask(order))
+                    .thenApply(order -> sendEmailTask(order));
 
-            Future<Order> future2 = executorService.submit(performPaymentTask(order));
-            order = future2.get();// Blocking
-
-            Future<Order> future3 = executorService.submit(dispatchTask(order));
-            order = future3.get();// Blocking
-
-            Future<Order> future4 = executorService.submit(sendEmailTask(order));
-            order = future4.get();// Blocking
-
-            System.out.println("Order : " + order.toString());
+//            System.out.println("Order : " + order.toString());
             System.out.println("MultiFutureBlockingScenarioExample.main() - " + Thread.currentThread().getName());
         }
 
         executorService.shutdown();
     }
 
-    private static GetOrderTask getOrderTask() {
-        return new GetOrderTask();
+
+
+    private static Order getOrderTask() {
+        return new Order();
     }
 
-    private static EnrichOrderTask enrichTask(Order order) {
-        return new EnrichOrderTask(order);
+    private static Order enrichTask(Order order) {
+        return new Order();
     }
 
-    private static PerformPaymentTask performPaymentTask(Order order) {
-        return new PerformPaymentTask(order);
+    private static Order performPaymentTask(Order order) {
+        return new Order();
     }
 
-    private static DispatchTask dispatchTask(Order order) {
-        return new DispatchTask(order);
+    private static Order dispatchTask(Order order) {
+        return new Order();
     }
 
-    private static SendEmailTask sendEmailTask(Order order) {
-        return new SendEmailTask(order);
+    private static Order sendEmailTask(Order order) {
+        return new Order();
     }
 
 }

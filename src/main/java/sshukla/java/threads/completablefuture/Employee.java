@@ -1,4 +1,4 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

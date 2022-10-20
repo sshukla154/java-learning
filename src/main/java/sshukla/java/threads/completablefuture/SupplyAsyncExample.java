@@ -1,4 +1,4 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

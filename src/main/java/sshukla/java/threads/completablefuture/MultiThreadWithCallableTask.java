@@ -1,4 +1,4 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package sshukla.java.threads.executorservice;
+package sshukla.java.threads.completablefuture;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
