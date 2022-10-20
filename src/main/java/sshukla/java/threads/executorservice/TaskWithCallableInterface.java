@@ -11,7 +11,7 @@ public class TaskWithCallableInterface implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         for (Integer i : IntStream.range(1, 11).toArray()) {
-            System.out.println(i + " : TaskWithCallableInterface.run() - " + Thread.currentThread().getName());
+            System.out.println(i + " : TaskWithCallableInterface.call() - " + Thread.currentThread().getName());
         }
         return new Random().nextInt(100);
     }
