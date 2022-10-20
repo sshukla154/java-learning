@@ -106,6 +106,21 @@
     - Call submit() instead of execute() from ExecutorService
 
 - Method to help with cancellation:
-  1. `future.cancel(false)` - Cancel the task 
-  2. `future.isCancelled()` - Return true if the task was cancelled
-  3. `future.isDone()` - Return true if the task was cancelled (successfully or otherwise)
+    1. `future.cancel(false)` - Cancel the task
+    2. `future.isCancelled()` - Return true if the task was cancelled
+    3. `future.isDone()` - Return true if the task was cancelled (successfully or otherwise)
+
+## CompletableFuture: A new era of Asynchronous Programming
+
+- Using Asynchronous programming you can write non-blocking code where concurrently you can run N no of tasks in
+  separate threads without blocking main thread.
+- When task is completed it notifies to the main thread (whether the task is successful or failed)
+
+## Why CompletableFuture ?
+
+- We already have Future, ExecutorService, Callback interfaces, ThreadPools etc.
+- Disadvantages of Future approach:
+    - It cannot be manually completed.
+    - Multiple Future cannot be chained together.
+    - We cannot combine multiple Future together.
+    - No proper exception handling mechanism in Future.
