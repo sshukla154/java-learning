@@ -27,10 +27,10 @@ public class RunAsyncExample {
         ObjectMapper objectMapper = new ObjectMapper();
         CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
             //Fetch the data from json file
-            TypeReference<List<Object>> listTypeReference = new TypeReference<>() {
+            TypeReference<List<Employee>> listTypeReference = new TypeReference<>() {
             };
             try {
-                List<Object> employeeList = objectMapper.readValue(fileName, listTypeReference);
+                List<Employee> employeeList = objectMapper.readValue(fileName, listTypeReference);
                 System.out.println("Thread - fetchAndSaveEmployeeWithForkJoinPoolExecutor() - " + Thread.currentThread().getName());
 //                employeeList.forEach(System.out::println);
                 //Now save this list of employee to DB --  For practice instead of saving we are printing on console
@@ -47,10 +47,10 @@ public class RunAsyncExample {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
             //Fetch the data from json file
-            TypeReference<List<Object>> listTypeReference = new TypeReference<>() {
+            TypeReference<List<Employee>> listTypeReference = new TypeReference<>() {
             };
             try {
-                List<Object> employeeList = objectMapper.readValue(fileName, listTypeReference);
+                List<Employee> employeeList = objectMapper.readValue(fileName, listTypeReference);
                 System.out.println("Thread - fetchAndSaveEmployeeWithCustomExecutor() - " + Thread.currentThread().getName());
                 //Now save this list of employee to DB --  For practice instead of saving we are printing on console
 //                employeeList.forEach(System.out::println);
