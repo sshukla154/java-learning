@@ -1,21 +1,18 @@
 package sshukla.java.threads.completablefuture;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author 'Seemant Shukla' on '20/10/2022'
  */
 
-@Setter
-@Getter
+//@Setter
+//@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
 
     @JsonProperty("employeeId")
@@ -44,6 +41,78 @@ public class Employee {
 
     @JsonProperty("rating")
     private int rating;
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNewJoiner() {
+        return newJoiner;
+    }
+
+    public void setNewJoiner(String newJoiner) {
+        this.newJoiner = newJoiner;
+    }
+
+    public String getLearningPending() {
+        return learningPending;
+    }
+
+    public void setLearningPending(String learningPending) {
+        this.learningPending = learningPending;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     @Override
     public String toString() {
