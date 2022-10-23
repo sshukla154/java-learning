@@ -1,4 +1,4 @@
-package sshukla.java.eight;
+package sshukla.java.version.eight;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package sshukla.java.eight;
+package sshukla.java.version.eight;
 
 /**
  * @author 'Seemant Shukla' on '22/09/2022'

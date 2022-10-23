@@ -1,4 +1,4 @@
-package sshukla.java.eight;
+package sshukla.java.version.eight;
 
 import sshukla.java.model.Employee;
 
