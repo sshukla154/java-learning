@@ -28,11 +28,11 @@ public class SwitchExamples {
     }
 
     private static void java17SwitchExpressionWithGuardedPattern(Object email) {
-        switch (email) {
-            case String s && s.contains("@") && s.length() > 8 -> login();
-            case null -> throw new IllegalArgumentException();
-            default -> System.out.println("Please enter a valid e-mail.");
-        }
+//        switch (email) {
+//            case String s && s.contains("@") && s.length() > 8 -> login();
+//            case null -> throw new IllegalArgumentException();
+//            default -> System.out.println("Please enter a valid e-mail.");
+//        }
     }
 
     private static void login() {
@@ -41,17 +41,17 @@ public class SwitchExamples {
 
 
     private static void java17SwitchExpressionWithPatternMatching(Object obj) {
-        switch (obj) {
-            // Uncommenting will cause the switch to fail since everything falls into Object.
-            //case Object o -> System.out.println(o);
-            case String str -> System.out.println(str);
-            case Integer i -> System.out.println(i);
-            case Double d -> System.out.println(d);
-            case Boolean b -> System.out.println(b);
-            case Weekdays weekday -> System.out.println(weekday);
-            case null -> System.out.println("It's " + null); // Literal to avoid ambiguity.
-            default -> System.out.println("Not an expected type!");
-        }
+//        switch (obj) {
+//            // Uncommenting will cause the switch to fail since everything falls into Object.
+//            //case Object o -> System.out.println(o);
+//            case String str -> System.out.println(str);
+//            case Integer i -> System.out.println(i);
+//            case Double d -> System.out.println(d);
+//            case Boolean b -> System.out.println(b);
+//            case Weekdays weekday -> System.out.println(weekday);
+//            case null -> System.out.println("It's " + null); // Literal to avoid ambiguity.
+//            default -> System.out.println("Not an expected type!");
+//        }
         ;
     }
 
